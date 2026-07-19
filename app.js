@@ -170,3 +170,20 @@ app.delete('/enrollments/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+// app.js
+import express from 'express';
+import coursesRouter from './routes/coursesRoutes.js';
+import studentsRouter from './routes/studentsRoutes.js';
+import enrollmentsRouter from './routes/enrollmentsRoutes.js';
+
+const app = express();
+
+// תוכנת ביניים לקריאת JSON
+app.use(express.json());
+
+// חיבור הראוטרים השונים לפי ישויות
+app.use('/api/courses', coursesRouter);
+app.use('/api/students', studentsRouter);
+app.use('/api/enrollments', enrollmentsRouter);
+
+export default app;
