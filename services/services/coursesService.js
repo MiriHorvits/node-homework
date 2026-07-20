@@ -5,9 +5,17 @@ export function getAllCourses() {
     return courses;
 }
 
-// פונקציה שמוצאת קורס לפי מזהה (ID)
-export function getCourseById(id) {
-    return courses.find(course => course.id === parseInt(id));
+// פונקציה שמוצאת קורס לפי מזהה
+export function getCourseById(id, res) { // שים לב שהוספנו את res כפרמטר כדי שנוכל להחזיר תשובה
+    const course = courses.find(course => course.id === id);
+    
+    // ********* הבדיקה של שלב 2 *********
+    if (!course) {
+        return res.status(404).json({ message: "Course not found" });
+    }
+    // **********************************
+    
+    return course;
 }
 
 // פונקציה להוספת קורס חדש
